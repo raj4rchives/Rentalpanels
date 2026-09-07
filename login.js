@@ -1,23 +1,4 @@
-const form = document.getElementById("loginForm");
-const message = document.getElementById("message");
-
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const remember = document.getElementById("remember").checked;
-
-  if(!email || !password) return;
-
-  localStorage.setItem("cartywebLoggedIn", "true");
-
-  if(remember){
-    localStorage.setItem("cartywebRemember", "true");
-  }else{
-    localStorage.removeItem("cartywebRemember");
-  }
-
-  // Connect this to your real authentication later.
-  window.location.href = "dashboard.html";
-});
+const toastBox=document.getElementById('toast');function toast(m){toastBox.textContent=m;toastBox.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>toastBox.classList.remove('show'),2200)}
+document.getElementById('toggle').onclick=function(){const i=document.getElementById('password'),s=i.type==='password';i.type=s?'text':'password';this.textContent=s?'Hide':'Show'};
+document.getElementById('forgot').onclick=()=>toast('Password reset will be available soon.');document.getElementById('signup').onclick=()=>toast('Registration page will be connected here.');document.getElementById('demo').onclick=()=>{localStorage.setItem('cartywebLoggedIn','true');location.href='dashboard.html'};
+document.getElementById('loginForm').onsubmit=e=>{e.preventDefault();localStorage.setItem('cartywebLoggedIn','true');if(document.getElementById('remember').checked)localStorage.setItem('cartywebRemember','true');location.href='dashboard.html'};
